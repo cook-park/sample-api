@@ -7,7 +7,7 @@ profiles:
       local:
         push: true
       artifacts:
-        - image: oscka/sample-api
+        - image: cookpark/sample-api
           jib:
             args:
               - -DskipTests
