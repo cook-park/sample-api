@@ -1,6 +1,6 @@
 def PROJECT_NAME = "sample-api"
-def gitUrl = "https://github.com/oscka/${PROJECT_NAME}.git"
-def gitOpsUrl = "https://github.com/oscka/sample-gitops.git"
+def gitUrl = "https://github.com/cook-park/${PROJECT_NAME}.git"
+def gitOpsUrl = "https://github.com/cook-park/sample-gitops.git"
 def opsBranch = "main"
 /////////////////////////////
 pipeline {
@@ -42,8 +42,8 @@ pipeline {
                         cd ./sample-gitops/sample-api/rolling-update-no-istio
                         kustomize edit set image cookpark/sample-api:${TAG}
                         # 로컬외에는 주석 제거한다
-                        git config --global user.email "admin@demo.com"
-                        git config --global user.name "admin"
+                        git config --global user.email "cook.park@osckorea.com"
+                        git config --global user.name "cook-park"
                         git add .
                         git commit -am 'update image tag ${TAG}'
                         git remote set-url --push origin ${gitOpsUrl}
