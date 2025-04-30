@@ -3,14 +3,14 @@
 ##############
 
 server:
- port: 8080 
+  port: 8081
 
 spring:
   datasource:    
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql.192.168.56.11.sslip.io:3306/sampledb?autoReconnect=true&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql-svc.db.svc:3306/sampledb?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: oscer
-    password: Oscer2022@!
+    password: oscer1234
     hikari: 
       pool-name: hikari-cp
       maximum-pool-size: 30
@@ -26,10 +26,13 @@ spring:
       hibernate:
         format-sql: true
     hibernate:
-        ddl-auto: none    
+        ddl-auto: none  
+
+
 
 logging:
   level:  
     com.example.sampleapi: info 
+
 
 
