@@ -10,7 +10,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysql.192.168.56.11.sslip.io:3306/sampledb?autoReconnect=true&useUnicode=true&characterEncoding=utf8
     username: oscer
-    password: Oscer2022@!
+    password: oscer1234
     hikari: 
       pool-name: hikari-cp
       maximum-pool-size: 30
