@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: sampledb
+      MYSQL_USER: oscer
+      MYSQL_PASSWORD: Oscer2022@!
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql # 데이터 영속성을 위한 볼륨 추가
+    healthcheck: 
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "oscer", "-pOscer2022@!"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s 
+
+  app:
+    build: 
+      context: ../
+      dockerfile: Dockerfile
+    container_name: sample_api
+    ports:
+      - "8088:8088"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/sampledb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: oscer
+      SPRING_DATASOURCE_PASSWORD: Oscer2022@!
+    depends_on:
+      db:
+        condition: service_healthy 
+    restart: on-failure
+
+volumes:
+  mysql_data:
